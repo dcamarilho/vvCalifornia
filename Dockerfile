@@ -1,20 +1,21 @@
-# Use Node.js image
+
+# Use official Node.js image
 FROM node:18
 
 # Set working directory
 WORKDIR /app
 
-# Copy frontend files
+# Copy frontend files to the container
 COPY ./frontend /app
 
 # Install dependencies
 RUN npm install
 
-# Build Next.js app
+# Build the Next.js application
 RUN npm run build
 
-# Expose port
+# Expose the application port
 EXPOSE 3000
 
-# Start the app
+# Start the application
 CMD ["npm", "start"]
