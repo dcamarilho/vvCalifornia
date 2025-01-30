@@ -5,7 +5,7 @@ FROM node:18
 WORKDIR /app
 
 # Copiar package.json antes do código-fonte para otimizar cache
-COPY ./frontend/package.json ./frontend/package-lock.json ./
+COPY ./frontend/package.json ./
 
 # Instalar dependências antes de copiar o restante do código
 RUN npm install
