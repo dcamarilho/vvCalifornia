@@ -1,21 +1,26 @@
-
-# Use official Node.js image
+# Usando a imagem oficial do Node.js
 FROM node:18
 
-# Set working directory
+# Definir diretório de trabalho
 WORKDIR /app
 
-# Copy frontend files to the container
-COPY ./frontend /app
+# Copiar package.json antes do código-fonte para otimizar cache
+COPY ./frontend/package.json ./frontend/package-lock.json ./
 
-# Install dependencies
+# Instalar dependências antes de copiar o restante do código
 RUN npm install
 
-# Build the Next.js application
+# Copiar o restante do código-fonte
+COPY ./frontend .
+
+# Garantir que socket.io-client esteja instalado corretamente
+RUN npm install socket.io-client --legacy-peer-deps
+
+# Rodar build do Next.js
 RUN npm run build
 
-# Expose the application port
+# Expor porta do servidor
 EXPOSE 3000
 
-# Start the application
+# Comando de inicialização
 CMD ["npm", "start"]
