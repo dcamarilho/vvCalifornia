@@ -1,19 +1,20 @@
-
-# Use official Node.js image
+# Usando imagem oficial do Node.js
 FROM node:18
 
-# Set working directory
+# Definir o diretório de trabalho
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package.json ./
+# Copiar apenas package.json
+COPY backend/package.json ./
+
+# Instalar dependências
 RUN npm install
 
-# Copy application code
-COPY . .
+# Copiar o restante do código
+COPY backend/ .
 
-# Expose port
-EXPOSE 5000
+# Expor a porta usada pelo backend (exemplo: 4000)
+EXPOSE 4000
 
-# Start application
-CMD ["node", "index.js"]
+# Comando para iniciar o servidor
+CMD ["npm", "start"]
