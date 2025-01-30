@@ -17,7 +17,7 @@ COPY ./frontend .
 RUN npm install socket.io-client --legacy-peer-deps
 
 # Rodar build do Next.js
-RUN npm run buildt
+RUN npm run build
 
 # Expor porta do servidor
 EXPOSE 3000
